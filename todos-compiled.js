@@ -53,15 +53,25 @@ var visibilityFilter = function visibilityFilter() {
     }
 };
 
-var todoApp = function todoApp() {
-    var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-    var action = arguments[1];
-    
+/*
+const todoApp = (state = {}, action) => {
     return {
-        todos: todos(state.todos, action),
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action)
-    };
+        todos: todos(
+            state.todos,
+            action
+        ),
+        visibilityFilter: visibilityFilter(
+            state.visibilityFilter,
+            action
+        )
+    }
 };
+*/
+
+var _Redux = Redux;
+var combineReducers = _Redux.combineReducers;
+
+var todoApp = combineReducers({ todos: todos, visibilityFilter: visibilityFilter });
 
 var testAddTodo = function testAddTodo() {
     var stateBefore = [];
@@ -113,8 +123,8 @@ var testToggleTodo = function testToggleTodo() {
 
 //testAddTodo();
 //testToggleTodo();
-var _Redux = Redux;
-var createStore = _Redux.createStore;
+var _Redux2 = Redux;
+var createStore = _Redux2.createStore;
 
 var store = createStore(todoApp);
 
