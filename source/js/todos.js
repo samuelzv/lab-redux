@@ -47,21 +47,6 @@ const visibilityFilter = (
     }
 };
 
-/*
-const todoApp = (state = {}, action) => {
-    return {
-        todos: todos(
-            state.todos,
-            action
-        ),
-        visibilityFilter: visibilityFilter(
-            state.visibilityFilter,
-            action
-        )
-    }
-};
-*/
-
 const { combineReducers } = Redux;
 const todoApp = combineReducers({ todos, visibilityFilter });
 
@@ -178,3 +163,4 @@ console.log(store.getState());
 console.log('--------------');
 
 console.log('All test passed');
+

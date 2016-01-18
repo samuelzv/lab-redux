@@ -1,0 +1,21 @@
+{
+  "name": "redux",
+  "description": "",
+  "main": "todos.js",
+  "authors": [
+    "Samuel Zuniga Vanoye <szunigav@tibco-support.com>"
+  ],
+  "license": "ISC",
+  "homepage": "ls",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.14.6"
+  }
+}

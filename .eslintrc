@@ -1,0 +1,11 @@
+{
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": true,
+    "destructuring": true,
+    "generators": true,
+    "jsx": true,
+    "spread": true
+  }
+}
