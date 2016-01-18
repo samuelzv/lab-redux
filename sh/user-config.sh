@@ -1,0 +1,1 @@
+curl https://raw.githubusercontent.com/creationix/nvm/v0.30.0/install.sh | sh
