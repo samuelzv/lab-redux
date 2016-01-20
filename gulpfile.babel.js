@@ -8,11 +8,11 @@ const newer   = require('gulp-newer');
 
 var appFiles = {
     html: [
-        'source/index.html'
+        'client/source/index.html'
     ],
     source: [
-        'source/components/TodoApp.jsx',
-        'source/js/todos.js'
+        'client/source/components/TodoApp.jsx',
+        'client/source/js/todos.js'
     ],
     vendor: [
         'bower_components/react/react.js',
@@ -44,18 +44,18 @@ gulp.task('copy-files', ['copy-html','copy-vendor'], ()=> {
 });
 
 gulp.task('copy-vendor', ()=> {
-    return copyFiles(appFiles.vendor, 'distro/vendor');
+    return copyFiles(appFiles.vendor, 'distro/client/vendor');
 });
 
 gulp.task('copy-html', ()=> {
-    return copyFiles(appFiles.html, 'distro');
+    return copyFiles(appFiles.html, 'distro/client');
 });
 
 gulp.task('concat', ['lint'], () => {
     return gulp.src(appFiles.source)
         .pipe(babel())
         .pipe(concat('all.js'))
-        .pipe(gulp.dest('distro/js'));
+        .pipe(gulp.dest('distro/client/js'));
 });
 
 
