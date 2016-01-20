@@ -22,6 +22,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "hapi": "^12.1.0",
     "redux": "^3.0.5"
   }
 }
