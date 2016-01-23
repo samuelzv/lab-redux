@@ -12,8 +12,17 @@ var vendorFiles = [
     'bower_components/angular/angular.js'
 ];
 
+var jsConfigFiles = [
+    'gulpfile.babel.js',
+    'bower.json',
+    'package.json'
+];
+
 var jsClientFiles = [
-    'source/client/app/app.js'
+    'source/client/app/app.js',
+    'source/client/app/todo.common/todo.common.module.js',
+    'source/client/app/todo.common.input/todo.common.input.module.js',
+    'source/client/app/todo.common.input.text/todo.common.input.text.module.js'
 ];
 
 
@@ -47,6 +56,8 @@ gulp.task('default', (cb) => {
 
 
 gulp.task('watch', [], ()=> {
+    let files = jsClientFiles.concat(jsConfigFiles);
+
     livereload.listen();
-    gulp.watch(jsClientFiles, ['build-client-dev']);
+    gulp.watch(files, ['build-client-dev']);
 });
