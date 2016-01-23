@@ -7,6 +7,7 @@ const newer   = require('gulp-newer');
 const runSequence = require('run-sequence');
 const rename = require('gulp-rename');
 const livereload = require('gulp-livereload');
+const plumber = require('gulp-plumber');
 
 var vendorFiles = [
     'bower_components/angular/angular.js'
@@ -38,9 +39,9 @@ gulp.task('build-vendor-dev', (cb) => {
 gulp.task('build-js-dev', (cb) => {
     return gulp.src(jsClientFiles)
         .pipe(concat('app.js'))
+        .pipe(plumber())
         .pipe(eslint())
         .pipe(eslint.format())
-        .pipe(eslint.failAfterError())
         .pipe(babel())
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('source/client'))
