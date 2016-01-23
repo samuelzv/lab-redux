@@ -5,12 +5,15 @@ const eslint  = require('gulp-eslint');
 const concat  = require('gulp-concat');
 const newer   = require('gulp-newer');
 
-
+//TODO move html to source/client
 var appFiles = {
     html: [
         'source/client/index.html'
     ],
     source: {
+        configuration: [
+            'package.json'
+        ],
         client: [
             'source/client/components/TodoApp.jsx',
             'source/client/js/todos.js'
@@ -55,7 +58,7 @@ gulp.task('lint-server', () => {
     return lintFiles(appFiles.source.server);
 });
 
-gulp.task('copy-files', ['copy-html','copy-vendor'], ()=> {
+gulp.task('copy-files', ['copy-configuration', 'copy-html','copy-vendor'], ()=> {
 });
 
 gulp.task('copy-vendor', ()=> {
@@ -64,6 +67,10 @@ gulp.task('copy-vendor', ()=> {
 
 gulp.task('copy-html', ()=> {
     return copyFiles(appFiles.html, 'distro/client');
+});
+
+gulp.task('copy-configuration', ()=> {
+    return copyFiles(appFiles.source.configuration, 'distro');
 });
 
 gulp.task('concat-client', ['lint-client'], () => {
@@ -76,7 +83,7 @@ gulp.task('concat-client', ['lint-client'], () => {
 gulp.task('translate-server', ['lint-server'], () => {
     return gulp.src(appFiles.source.server)
         .pipe(babel())
-        .pipe(gulp.dest('distro/server'));
+        .pipe(gulp.dest('distro'));
 });
 
 
@@ -87,4 +94,15 @@ gulp.task('build-server', ['translate-server'], ()=> {
 });
 
 gulp.task('default',['build-client', 'build-server'], () => {
+});
+
+
+gulp.task('watch', [], ()=> {
+    gulp.watch(appFiles.source.server,['build-server']);
+
+    //TODO watch html files
+    gulp.watch(appFiles.source.client,['build-client']);
+
+    //
+
 });

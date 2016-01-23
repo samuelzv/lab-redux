@@ -5,3 +5,6 @@ source ~/.nvm/nvm.sh
 nvm install v4.0.0
 nvm alias default v4.0.0
 nvm use default
+
+npm install -g nodemon
+

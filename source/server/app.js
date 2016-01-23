@@ -4,7 +4,6 @@ const Hapi  = require('hapi');
 
 const server = new Hapi.Server();
 const configuration = {
-    host: 'localhost',
     port: 3000
 };
 
@@ -13,14 +12,14 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        return reply('Index page');
+        return reply('Index page 11');
     }
 });
 
 
 server.start((err) => {
     if(err) {
-        throw error;
+        throw err;
     }
     console.log('Server running at ', server.info.uri);
 });

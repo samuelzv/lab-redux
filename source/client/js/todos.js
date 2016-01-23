@@ -162,5 +162,5 @@ console.log('Current state:');
 console.log(store.getState());
 console.log('--------------');
 
-console.log('All test passed');
+console.log('All test passed.');
 
