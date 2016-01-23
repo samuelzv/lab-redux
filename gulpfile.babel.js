@@ -21,6 +21,7 @@ var jsConfigFiles = [
 var jsClientFiles = [
     'source/client/app/app.js',
     'source/client/app/todo.common/todo.common.module.js',
+    'source/client/app/todo.common/todo.common.controller.js',
     'source/client/app/todo.common.input/todo.common.input.module.js',
     'source/client/app/todo.common.input.text/todo.common.input.text.module.js'
 ];
