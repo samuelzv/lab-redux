@@ -4,3 +4,5 @@ distro
 node_modules
 .vagrant
 npm-debug.log
+source/client/app.min.js
+source/client/app-dependencies.min.js

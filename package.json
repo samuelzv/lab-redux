@@ -14,11 +14,13 @@
     "gulp-eslint": "^1.1.1",
     "gulp-newer": "^1.1.0",
     "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1"
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "run-sequence": "^1.1.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon distro/app.js"
+    "start": "nodemon source/server/app.js"
   },
   "author": "",
   "license": "ISC",

@@ -4,105 +4,49 @@ const babel   = require('gulp-babel');
 const eslint  = require('gulp-eslint');
 const concat  = require('gulp-concat');
 const newer   = require('gulp-newer');
+const runSequence = require('run-sequence');
+const rename = require('gulp-rename');
 
-//TODO move html to source/client
-var appFiles = {
-    html: [
-        'source/client/index.html'
-    ],
-    source: {
-        configuration: [
-            'package.json'
-        ],
-        client: [
-            'source/client/components/TodoApp.jsx',
-            'source/client/js/todos.js'
-        ],
-        server: [
-            'source/server/app.js'
-        ]
-    },
-    vendor: [
-        'bower_components/react/react.js',
-        'node_modules/redux/dist/redux.js'
-    ],
-};
+var vendorFiles = [
+    'bower_components/react/react.js',
+    'node_modules/redux/dist/redux.js'
+];
+
+var jsClientFiles = [
+    'source/client/components/TodoApp.jsx',
+    'source/client/js/todos.js'
+];
 
 
-var onError = (error) => {
-    console.log('****Start Error****');
-    console.log(error);
-    console.log('****End Error****');
-};
+gulp.task('build-vendor-dev', (cb) => {
+    return gulp.src(vendorFiles)
+            .pipe(concat('app-dependencies.js'))
+            .pipe(rename({suffix:'.min'}))
+            .pipe(gulp.dest('source/client'))
+});
 
-
-var lintFiles = (source) => {
-     return gulp.src(source)
+gulp.task('build-js-dev', (cb) => {
+    return gulp.src(jsClientFiles)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
-};
-
-
-var copyFiles = (source, destination) => {
-    return gulp.src(source)
-        .pipe(newer(destination))
-        .pipe(gulp.dest(destination));
-};
-
-gulp.task('lint-client', () => {
-    return lintFiles(appFiles.source.client);
-});
-
-gulp.task('lint-server', () => {
-    return lintFiles(appFiles.source.server);
-});
-
-gulp.task('copy-files', ['copy-configuration', 'copy-html','copy-vendor'], ()=> {
-});
-
-gulp.task('copy-vendor', ()=> {
-    return copyFiles(appFiles.vendor, 'distro/client/vendor');
-});
-
-gulp.task('copy-html', ()=> {
-    return copyFiles(appFiles.html, 'distro/client');
-});
-
-gulp.task('copy-configuration', ()=> {
-    return copyFiles(appFiles.source.configuration, 'distro');
-});
-
-gulp.task('concat-client', ['lint-client'], () => {
-    return gulp.src(appFiles.source.client)
         .pipe(babel())
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('distro/client/js'));
-});
-
-gulp.task('translate-server', ['lint-server'], () => {
-    return gulp.src(appFiles.source.server)
-        .pipe(babel())
-        .pipe(gulp.dest('distro'));
+        .pipe(concat('app.js'))
+        .pipe(rename({suffix:'.min'}))
+        .pipe(gulp.dest('source/client'));
 });
 
 
-gulp.task('build-client', ['copy-files', 'concat-client'], ()=> {
+
+gulp.task('build-client-dev', (cb)=> {
+    runSequence('build-vendor-dev', 'build-js-dev', cb);
 });
 
-gulp.task('build-server', ['translate-server'], ()=> {
-});
-
-gulp.task('default',['build-client', 'build-server'], () => {
+gulp.task('default', (cb) => {
+    runSequence('build-client-dev','watch', cb);
 });
 
 
 gulp.task('watch', [], ()=> {
-    gulp.watch(appFiles.source.server,['build-server']);
-
-    //TODO watch html files
-    gulp.watch(appFiles.source.client,['build-client']);
-
-    //
-
+    gulp.watch(jsClientFiles, ['build-client-dev']);
 });
