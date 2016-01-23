@@ -12,7 +12,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        return reply('Index page 2');
+        return reply('Index page 22');
     }
 });
 

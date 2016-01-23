@@ -6,15 +6,14 @@ const concat  = require('gulp-concat');
 const newer   = require('gulp-newer');
 const runSequence = require('run-sequence');
 const rename = require('gulp-rename');
+const livereload = require('gulp-livereload');
 
 var vendorFiles = [
-    'bower_components/react/react.js',
-    'node_modules/redux/dist/redux.js'
+    'bower_components/angular/angular.js'
 ];
 
 var jsClientFiles = [
-    'source/client/components/TodoApp.jsx',
-    'source/client/js/todos.js'
+    'source/client/app/app.js'
 ];
 
 
@@ -23,6 +22,7 @@ gulp.task('build-vendor-dev', (cb) => {
             .pipe(concat('app-dependencies.js'))
             .pipe(rename({suffix:'.min'}))
             .pipe(gulp.dest('source/client'))
+            .pipe(livereload());
 });
 
 gulp.task('build-js-dev', (cb) => {
@@ -33,10 +33,9 @@ gulp.task('build-js-dev', (cb) => {
         .pipe(babel())
         .pipe(concat('app.js'))
         .pipe(rename({suffix:'.min'}))
-        .pipe(gulp.dest('source/client'));
+        .pipe(gulp.dest('source/client'))
+        .pipe(livereload());
 });
-
-
 
 gulp.task('build-client-dev', (cb)=> {
     runSequence('build-vendor-dev', 'build-js-dev', cb);
@@ -48,5 +47,6 @@ gulp.task('default', (cb) => {
 
 
 gulp.task('watch', [], ()=> {
+    livereload.listen();
     gulp.watch(jsClientFiles, ['build-client-dev']);
 });
