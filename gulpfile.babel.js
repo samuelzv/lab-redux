@@ -36,11 +36,11 @@ gulp.task('build-vendor-dev', (cb) => {
 
 gulp.task('build-js-dev', (cb) => {
     return gulp.src(jsClientFiles)
+        .pipe(concat('app.js'))
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
         .pipe(babel())
-        .pipe(concat('app.js'))
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('source/client'))
         .pipe(livereload());
