@@ -11,6 +11,7 @@ const plumber = require('gulp-plumber');
 const less = require('gulp-less');
 const path = require('path');
 const autoprefixer = require('gulp-autoprefixer');
+const spawn = require('child_process').spawn;
 
 var jsVendorFiles = [
     'bower_components/angular/angular.js'
@@ -98,12 +99,32 @@ gulp.task('default', (cb) => {
 });
 */
 
+gulp.task('gulp-autoreload', function() {
+    // Store current process if any
+    var p;
+
+    gulp.watch('gulpfile.babel.js', spawnChildren);
+    // Comment the line below if you start your server by yourslef anywhere else
+    spawnChildren();
+
+    function spawnChildren(e) {
+        if(p) {
+            p.kill();
+        }
+
+        p = spawn('gulp', ['watch'], {stdio: 'inherit'});
+    }
+});
 
 gulp.task('watch', [], ()=> {
 
-    gulp.watch(jsClientFiles, ['build-client-dev'])
-    gulp.watch(lessFiles, ['less']);
-    gulp.watch(htmlFiles, ['html']);
+    runSequence('build-client-dev', 'less', 'html', ()=> {
+        console.log('hello.....');
 
-    livereload.listen();
+        gulp.watch(jsClientFiles, ['build-client-dev'])
+        gulp.watch(lessFiles, ['less']);
+        gulp.watch(htmlFiles, ['html']);
+        livereload.listen();
+    });
+
 });
