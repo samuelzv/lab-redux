@@ -1,7 +1,7 @@
 <div class="todo-common-input-text">
-    <div class="todo-common-input-text__label">{{title}}</div>
+    <div class="todo-common-input-text__label">{{vm.title}}</div>
     <div class="todo-common-input-text__control">
-        <input type="text" ng-model='value'>
+        <input type="text" ng-model='vm.value'>
     </div>
-    <div ng-class="getStyle('todo-common-input-text__status',state)"></div>
+    <div ng-class="vm.getStyle('todo-common-input-text__status')"></div>
 </div>

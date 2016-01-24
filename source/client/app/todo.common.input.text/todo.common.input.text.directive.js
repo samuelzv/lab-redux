@@ -1,14 +1,23 @@
-// TODO dont use $scope, pass me
-var todoCommonInputTextController =($scope) => {
-    $scope.state = 'empty';
-    $scope.value = '';
+function directiveLink(scope, element, attr, ctrl) {
 
-    $scope.$watch('value', (newValue, oldValue) => {
-        $scope.state = getState(newValue);
+    element.on('$destroy', function(event) {
+      console.log('destroying');
+    });
+}
+
+directiveController.$inject = ['$scope'];
+function directiveController ($scope)  {
+    var vm = this;
+    vm.state = null;
+    vm.value = '';
+
+    $scope.$watch('vm.value', (newValue, oldValue) => {
+        vm.state = getState(newValue);
+        console.log(vm.state);
     });
 
-    $scope.getStyle = (baseClass, state)=> {
-        return baseClass.concat('--',state);
+    vm.getStyle = (baseClass)=> {
+        return baseClass.concat('--', vm.state || 'empty');
     };
 
 
@@ -19,16 +28,18 @@ var todoCommonInputTextController =($scope) => {
 
         return (value.length > 0 && value.length > 3) ? 'success': 'error';
     }
-};
+}
 
-todoCommonInputTextController.$inject = ['$scope'];
 
 angular.module('todo.common.input.text')
-    .controller('TodoCommonInputTextController', todoCommonInputTextController)
-    .directive('todoCommonInputText', ()=> {
+    .controller('TodoCommonInputTextController', directiveController)
+    .directive('todoCommonInputText', function () {
         return {
             restrict: 'E',
+            link: directiveLink,
             controller: 'TodoCommonInputTextController',
+            controllerAs: 'vm',
+            bindToController: true,
             templateUrl: 'app/todo.common.input.text/todo.common.input.text.template.html',
             scope: {
                 title: '@'
