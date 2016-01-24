@@ -1,1 +1,1 @@
-angular.module('todo.common.input.module',['todo.common']);
+angular.module('todo.common.input',['todo.common.input.text']);

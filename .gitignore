@@ -6,3 +6,4 @@ node_modules
 npm-debug.log
 source/client/app.min.js
 source/client/app-dependencies.min.js
+source/client/css-vendor.min.css

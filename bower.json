@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "react": "~0.14.6",
-    "angular": "angularjs#~1.4.9"
+    "angular": "angularjs#~1.4.9",
+    "font-awesome": "fontawesome#~4.5.0"
   }
 }
