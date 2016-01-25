@@ -3,20 +3,87 @@
 <head>
     <meta name="description" content="[todo couter]">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
     <script src="app-dependencies.min.js"></script>
     <script src="app.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/app.css">
-    <title>Todo sample app1</title>
+    <title>Todo</title>
 </head>
 
 <body ng-app="todo.app">
-    <div id="root">
-        <div class="todo-common-input-text-layout-vertical">
-            <todo-common-input-text title="First name"></todo-common-input-text>
-            <todo-common-input-text title="Last name"></todo-common-input-text>
-        </div>
+
+    <div class="todo-mainpage">
+        <header class="todo-mainpage-header">
+            <div class="todo-mainpage-header__logo">
+                <img src="/assets/images/logo.png" alt="">
+                <a href="#">To do app</a>
+            </div>
+
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Contact</a>
+                <a href="#">Login</a>
+            </nav>
+        </header>
+
+
+        <section class="todo-mainpage-content">
+            <article>
+                <h2 clas="todo-mainpage-content__title">Loren ipsum</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae dignissimos eos ex explicabo fugiat iusto laboriosam laborum maiores, necessitatibus nesciunt nostrum pariatur provident quibusdam saepe sequi similique temporibus vitae?</p>
+            </article>
+
+            <article>
+                <h2 clas="todo-mainpage-content__title">Flkajds asdkljf</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae dignissimos eos ex explicabo fugiat iusto laboriosam laborum maiores, necessitatibus nesciunt nostrum pariatur provident quibusdam saepe sequi similique temporibus vitae?</p>
+            </article>
+
+            <article>
+                <h2 clas="todo-mainpage-content__title">Flkajds asdkljf</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae dignissimos eos ex explicabo fugiat iusto laboriosam laborum maiores, necessitatibus nesciunt nostrum pariatur provident quibusdam saepe sequi similique temporibus vitae?</p>
+            </article>
+        </section>
+
+
+        <aside class="todo-mainpage-aside">
+            <div class="todo-mainpage-aside__widget">
+                <div class="todo-base-image"></div>
+            </div>
+
+            <div class="todo-mainpage-aside__widget">
+                <div class="todo-base-image"></div>
+            </div>
+        </aside>
+
+
+        <footer class="todo-mainpage-footer">
+
+            <section class="todo-base-links">
+                <a href="#">Option 1</a>
+                <a href="#">Option 2</a>
+            </section>
+
+            <div class="todo-base-social">
+                <a href="#">FB</a>
+                <a href="#">TW</a>
+
+            </div>
+
+
+        </footer>
+
+
+
+
+
+
+        <!--<div class="todo-common-input-text-layout-vertical">-->
+            <!--<todo-common-input-text title="First name"></todo-common-input-text>-->
+            <!--<todo-common-input-text title="Last name"></todo-common-input-text>-->
+        <!--</div>-->
+
+
     </div>
 </body>
 

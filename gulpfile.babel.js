@@ -21,6 +21,8 @@ var cssVendorFiles = [
 ];
 
 var lessFiles = [
+    'source/client/app/todo.base/less/todo.base.less',
+    'source/client/app/todo.mainpage/less/todo.mainpage.less',
     'source/client/app/todo.common.input.text/less/todo.common.input.text.less',
     'source/client/app/todo.common.input.text/less/todo.common.input.text.layout.less',
 ];
