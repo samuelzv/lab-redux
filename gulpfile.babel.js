@@ -14,7 +14,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const spawn = require('child_process').spawn;
 
 var jsVendorFiles = [
-    'bower_components/angular/angular.js'
+    'bower_components/angular/angular.js',
+    'bower_components/angular-ui-router/release/angular-ui-router.js'
 ];
 
 var cssVendorFiles = [
@@ -37,8 +38,14 @@ var jsClientFiles = [
     'source/client/app/todo.common.input.text/todo.common.input.text.directive.js',
     'source/client/app/todo.common.input/todo.common.input.module.js',
     'source/client/app/todo.common/todo.common.module.js',
-    'source/client/app/app.js',
     'source/client/app/todo.common/todo.common.controller.js',
+    'source/client/app/todo.home/todo.home.module.js',
+    'source/client/app/todo.home/todo.home.controller.js',
+    'source/client/app/todo.home/todo.home.config.js',
+    'source/client/app/todo.login/todo.login.module.js',
+    'source/client/app/todo.login/todo.login.controller.js',
+    'source/client/app/todo.login/todo.login.config.js',
+    'source/client/app/app.js'
 
 ];
 
@@ -67,9 +74,9 @@ gulp.task('less', () => {
 
 gulp.task('build-vendor-js-dev', (cb) => {
     return gulp.src(jsVendorFiles)
-            .pipe(concat('app-dependencies.js'))
-            .pipe(rename({suffix:'.min'}))
-            .pipe(gulp.dest('source/client'))
+        .pipe(concat('app-dependencies.js'))
+        .pipe(rename({suffix:'.min'}))
+        .pipe(gulp.dest('source/client'))
 });
 
 gulp.task('build-vendor-css-dev', (cb) => {
@@ -96,10 +103,10 @@ gulp.task('build-client-dev', (cb)=> {
 });
 
 /*
-gulp.task('default', (cb) => {
-    runSequence('build-client-dev', 'less', 'watch', cb);
-});
-*/
+ gulp.task('default', (cb) => {
+ runSequence('build-client-dev', 'less', 'watch', cb);
+ });
+ */
 
 gulp.task('gulp-autoreload', function() {
     // Store current process if any
@@ -130,3 +137,6 @@ gulp.task('watch', [], ()=> {
     });
 
 });
+
+
+
