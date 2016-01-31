@@ -12,6 +12,10 @@ const less = require('gulp-less');
 const path = require('path');
 const autoprefixer = require('gulp-autoprefixer');
 const spawn = require('child_process').spawn;
+const browserify = require('browserify');
+const buffer     = require('vinyl-buffer');
+const transform = require('vinyl-transform');
+const source     = require('vinyl-source-stream');
 
 var jsVendorFiles = [
     'bower_components/angular/angular.js',
@@ -50,6 +54,27 @@ var jsClientFiles = [
 ];
 
 var htmlFiles = ['source/client/**/*.html'];
+
+
+gulp.task('browserify', function () {
+  return browserify([__dirname + '/source/client/app/app.js']).bundle()
+    .pipe(source('app.min.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest(__dirname + '/source/client'));
+
+  /*
+    var browserified = transform(function(filename) {
+        var b = browserify(filename);
+        return b.bundle();
+    });
+
+    return gulp.src(['source/client/app/app.js'])
+      .pipe(browserified)
+      .pipe(gulp.dest('distro/client/js'));
+
+  */
+
+});
 
 gulp.task('html', ()=> {
     return gulp.src(htmlFiles)
