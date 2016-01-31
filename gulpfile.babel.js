@@ -22,68 +22,27 @@ var jsVendorFiles = [
     'bower_components/angular-ui-router/release/angular-ui-router.js'
 ];
 
-var cssVendorFiles = [
-];
 
-var lessFiles = [
-    'source/client/app/todo.base/less/todo.base.less',
-    'source/client/app/todo.mainpage/less/todo.mainpage.less',
-    'source/client/app/todo.common.input.text/less/todo.common.input.text.less',
-    'source/client/app/todo.common.input.text/less/todo.common.input.text.layout.less',
-];
-
-var jsConfigFiles = [
-    'bower.json',
-    'package.json'
-];
-
-var jsClientFiles = [
-    'source/client/app/todo.common.input.text/todo.common.input.text.module.js',
-    'source/client/app/todo.common.input.text/todo.common.input.text.directive.js',
-    'source/client/app/todo.common.input/todo.common.input.module.js',
-    'source/client/app/todo.common/todo.common.module.js',
-    'source/client/app/todo.common/todo.common.controller.js',
-    'source/client/app/todo.home/todo.home.module.js',
-    'source/client/app/todo.home/todo.home.controller.js',
-    'source/client/app/todo.home/todo.home.config.js',
-    'source/client/app/todo.login/todo.login.module.js',
-    'source/client/app/todo.login/todo.login.controller.js',
-    'source/client/app/todo.login/todo.login.config.js',
-    'source/client/app/app.js'
-
-];
-
-var htmlFiles = ['source/client/**/*.html'];
-
-
-gulp.task('browserify', function () {
-  return browserify([__dirname + '/source/client/app/app.js']).bundle()
+gulp.task('browserify',['babel'], function () {
+  return browserify([__dirname + '/temp/es5/app.js']).bundle()
     .pipe(source('app.min.js'))
     .pipe(buffer())
-    .pipe(gulp.dest(__dirname + '/source/client'));
-
-  /*
-    var browserified = transform(function(filename) {
-        var b = browserify(filename);
-        return b.bundle();
-    });
-
-    return gulp.src(['source/client/app/app.js'])
-      .pipe(browserified)
-      .pipe(gulp.dest('distro/client/js'));
-
-  */
-
+    .pipe(gulp.dest(__dirname + '/source/build/js'));
 });
 
 gulp.task('html', ()=> {
-    return gulp.src(htmlFiles)
-        .pipe(livereload());
+    return gulp.src('source/client/**/*.html')
+        .pipe(gulp.dest('source/build'));
+        //.pipe(livereload());
+});
 
+gulp.task('assets', ()=> {
+    return gulp.src('source/client/assets/**/*.*')
+        .pipe(gulp.dest('source/build/assets'));
 });
 
 gulp.task('less', () => {
-    return gulp.src(lessFiles)
+    return gulp.src('source/client/**/*.less')
         .pipe(concat('app.css'))
         .pipe(plumber())
         .pipe(less({
@@ -93,45 +52,43 @@ gulp.task('less', () => {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest('source/client/styles'))
-        .pipe(livereload());
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('source/build'));
+        //.pipe(livereload());
 });
 
-gulp.task('build-vendor-js-dev', (cb) => {
+gulp.task('vendor', (cb) => {
     return gulp.src(jsVendorFiles)
         .pipe(concat('app-dependencies.js'))
         .pipe(rename({suffix:'.min'}))
-        .pipe(gulp.dest('source/client'))
+        .pipe(gulp.dest('source/build/js'))
 });
 
-gulp.task('build-vendor-css-dev', (cb) => {
-    return gulp.src(cssVendorFiles)
-        .pipe(concat('css-vendor.css'))
-        .pipe(rename({suffix:'.min'}))
-        .pipe(gulp.dest('source/client'))
-});
 
-gulp.task('build-js-dev', (cb) => {
-    return gulp.src(jsClientFiles)
-        .pipe(concat('app.js'))
+gulp.task('babel', (cb) => {
+    return gulp.src('source/client/js/**/*.js')
         .pipe(plumber())
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(babel())
-        .pipe(rename({suffix:'.min'}))
-        .pipe(gulp.dest('source/client'))
-        .pipe(livereload());
+        .pipe(gulp.dest('temp/es5'));
 });
+
 
 gulp.task('build-client-dev', (cb)=> {
     runSequence('build-vendor-js-dev','build-vendor-css-dev','build-js-dev', cb);
 });
 
-/*
- gulp.task('default', (cb) => {
- runSequence('build-client-dev', 'less', 'watch', cb);
- });
- */
+
+gulp.task('watch', [], ()=> {
+    runSequence('browserify', 'vendor','less', 'html', 'assets', ()=> {
+        gulp.watch('source/client/js/**/*.js', ['browserify']);
+        gulp.watch('source/client/**/*.less', ['less']);
+        gulp.watch('source/client/**/*.html', ['html']);
+        livereload.listen();
+    });
+});
+
 
 gulp.task('gulp-autoreload', function() {
     // Store current process if any
@@ -149,19 +106,4 @@ gulp.task('gulp-autoreload', function() {
         p = spawn('gulp', ['watch'], {stdio: 'inherit'});
     }
 });
-
-gulp.task('watch', [], ()=> {
-
-    runSequence('build-client-dev', 'less', 'html', ()=> {
-        console.log('hello.....');
-
-        gulp.watch(jsClientFiles, ['build-client-dev'])
-        gulp.watch(lessFiles, ['less']);
-        gulp.watch(htmlFiles, ['html']);
-        livereload.listen();
-    });
-
-});
-
-
 
