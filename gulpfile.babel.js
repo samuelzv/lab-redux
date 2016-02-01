@@ -17,9 +17,15 @@ const buffer     = require('vinyl-buffer');
 const transform = require('vinyl-transform');
 const source     = require('vinyl-source-stream');
 
+var cssVendorFiles = [
+  'node_modules/bootstrap/dist/css/bootstrap.min.css'
+];
+
 var jsVendorFiles = [
     'bower_components/angular/angular.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.js'
+    'bower_components/angular-ui-router/release/angular-ui-router.js',
+    'node_modules/angular-validation/dist/angular-validation.min.js',
+    'node_modules/angular-validation/dist/angular-validation-rule.min.js'
 ];
 
 
@@ -32,8 +38,8 @@ gulp.task('browserify',['babel'], function () {
 
 gulp.task('html', ()=> {
     return gulp.src('source/client/**/*.html')
-        .pipe(gulp.dest('source/build'));
-        //.pipe(livereload());
+        .pipe(gulp.dest('source/build'))
+        .pipe(livereload());
 });
 
 gulp.task('assets', ()=> {
@@ -53,15 +59,23 @@ gulp.task('less', () => {
             cascade: false
         }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('source/build'));
-        //.pipe(livereload());
+        .pipe(gulp.dest('source/build'))
+        .pipe(livereload());
 });
 
-gulp.task('vendor', (cb) => {
+gulp.task('vendor-js', (cb) => {
     return gulp.src(jsVendorFiles)
         .pipe(concat('app-dependencies.js'))
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('source/build/js'))
+});
+
+
+gulp.task('vendor-css', (cb) => {
+    return gulp.src(cssVendorFiles)
+      .pipe(concat('app-dependencies.min.css'))
+      .pipe(rename({suffix:'.min'}))
+      .pipe(gulp.dest('source/build'))
 });
 
 
@@ -75,13 +89,15 @@ gulp.task('babel', (cb) => {
 });
 
 
+/*
 gulp.task('build-client-dev', (cb)=> {
     runSequence('build-vendor-js-dev','build-vendor-css-dev','build-js-dev', cb);
 });
+*/
 
 
 gulp.task('watch', [], ()=> {
-    runSequence('browserify', 'vendor','less', 'html', 'assets', ()=> {
+    runSequence('browserify', 'vendor-js', 'vendor-css', 'less', 'html', 'assets', ()=> {
         gulp.watch('source/client/js/**/*.js', ['browserify']);
         gulp.watch('source/client/**/*.less', ['less']);
         gulp.watch('source/client/**/*.html', ['html']);
