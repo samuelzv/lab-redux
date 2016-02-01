@@ -1,0 +1,13 @@
+<header class="todo-mainpage-header">
+    <div class="todo-mainpage-header__logo">
+        <img src="/assets/images/logo/logo.png" alt="">
+        <a href="#">To do app</a>
+    </div>
+
+    <nav>
+        <a ng-click="header.clickModule('home')" ng-class="{'selected': header.module == 'home'}">Home</a>
+        <a ref="#">Contact</a>
+        <a ng-click="header.clickModule('signup')" ng-class="{'selected': header.module == 'signup'}">Sign up</a>
+        <a ng-click="header.clickModule('login')" ng-class="{'selected': header.module == 'login'}">Login</a>
+    </nav>
+</header>
