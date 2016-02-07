@@ -9,7 +9,9 @@ angular.module('todo.app',
      require('./todo.home').name,
      require('./todo.login').name,
      require('./todo.signup').name,
+     require('./todo.dashboard').name,
      require('./todo.common').name,
+     require('./todo.envelope').name,
      require('./todo.mainpage').name
    ]);
 

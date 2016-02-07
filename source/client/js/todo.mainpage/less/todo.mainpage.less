@@ -1,143 +1,56 @@
 .todo-mainpage {
-  //background-color: #ccc;
-  margin: auto;
-  max-width: 1000px;
+  background-color: #eea236;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 1em;
+  margin-bottom: 1em;
   width: 90%;
   height: 100vh;
 
   /* Flex */
   display:flex;
-  flex-flow: row wrap;
-
-}
-
-
-/* ----------------------------------------- */
-// this is main
- .todo-mainpage-content {
-   background-color: #fff;
-   padding: 20px;
-
-   /* Flex */
-   flex: 1 1 70%;
-   //flex: 1;
- }
-
-    .todo-mainpage-content article {
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #000;
-    }
-
-    .todo-mainpage-content article:nth-last-child(1) {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .todo-mainpage_content__title {
-    }
-
-/* ----------------------------------------- */
- .todo-mainpage-aside {
-   background: #e67e22;
-   padding: 20px;
-   height: 80%;
-
-   /* Flex */
-   flex: 1 1 30%;
-   //flex: 0 0 300px;
-   display:flex;
-   flex-direction:column;
-   flex-wrap: wrap;
-   justify-content: flex-start;
-
- }
-
-     .todo-mainpage-aside__widget  {
-       background-color: #d35400;
-       height: 150px;
-       margin: 10px;
-     }
-  /* ----------------------------------------- */
-
-.todo-mainpage-footer {
-  background-color: #2c3e50;
-  width: 100%;
-  height: 10%;
-  padding: 20px;
-
-  /* Flex */
-  display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
-
-    .todo-mainpage-footer .todo-base-social,
-    .todo-mainpage-footer .todo-base-links {
-      background: #c0392b;
-
-      /* Flex */
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .todo-mainpage-footer .todo-base-social a,
-    .todo-mainpage-footer .todo-base-links a {
-      color: #fff;
-      padding: 10px;
-      text-decoration: none;
-      text-align: center;
-
-
-      /* Flex */
-      flex-grow: 1;
-    }
-
-    .todo-mainpage-footer .todo-base-social a:hover,
-    .todo-mainpage-footer .todo-base-links a:hover {
-      background: #e74c3c;
-    }
-
-/* ----------------------------------------- */
-
-@media screen and (max-width: 800px) {
-
-  .todo-mainpage,
   .todo-mainpage-header {
-    flex-direction: column;
-  }
-
-  .todo-mainpage-header {
-    padding: 0;
-  }
-
-  .todo-mainpage-header__logo  {
-    margin: 20px 0;
-  }
-
-
-  .todo-mainpage-header nav,
-  .todo-mainpage-footer .todo-base-links,
-  .todo-mainpage-footer .todo-base-social
-  {
+    background-color: #2c3e50;
+    height: 10%;
+    padding: 10px;
     width: 100%;
-  }
 
-
-  .todo-mainpage-footer .todo-base-links,
-  .todo-mainpage-footer .todo-base-social {
-    margin-top:10px;
-  }
-
-  .todo-mainpage-aside {
+    /* Flex */
+    align-items: center;
+    display: flex;
     flex-direction: row;
-    flex: 0;
+
+    justify-content: space-between;
   }
 
-  .todo-mainpage-aside .todo-mainpage-aside__widget {
-    flex-grow: 1;
+    .todo-mainpage-header h1 {
+      color: white;
+    }
+
+
+  .todo-mainpage-content {
+    background-color: #fff;
+    height: 80%;
+
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
   }
 
-}
+  .todo-mainpage-footer {
+    background-color: #0A7C71;
+    width:100%;
+    height:10%;
+  }
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+<div>
+    <div class="todo-envelope">
+        {{vm.envelope.initial | currency }}
+        <div class="todo-envelope__name" title={{vm.envelope.name}}>{{vm.envelope.name}}</div>
+    </div>
+    <div class="todo-envelope__footer">
+        <div>Current: {{vm.envelope.current | currency}}</div>
+    </div>
+</div>

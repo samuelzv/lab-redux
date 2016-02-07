@@ -1,17 +1,18 @@
 'use strict';
 
-function TodoMainPageHeaderController() {
+
+TodoMainPageHeaderController.$inject = ['$state'];
+
+function TodoMainPageHeaderController($state) {
   var vm = this;
 
   vm.module = 'home';
 
   vm.clickModule = (module)=> {
     vm.module = module;
+    $state.go(module);
   }
-
-
 }
 
-TodoMainPageHeaderController.$inject = [];
 
 module.exports = TodoMainPageHeaderController;
