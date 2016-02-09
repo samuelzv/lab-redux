@@ -6,7 +6,7 @@ function TodoDashboardController() {
     var vm = this;
 
     // change it to a service
-    vm.envelopes = [
+    vm.budgets = [
         {
             name: 'Gas',
             lastUpdate: '',

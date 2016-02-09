@@ -1,7 +1,7 @@
 'use strict';
 
-TodoEnvelopeController.$inject = ['$scope'];
-function TodoEnvelopeController($scope) {
+TodoEnvelopeController.$inject = [];
+function TodoEnvelopeController() {
   var vm = this;
 }
 

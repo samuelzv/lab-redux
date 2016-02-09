@@ -1,22 +1,41 @@
 @todo-envelope-height:130px;
 @todo-envelope-width:70px;
 
+.todo-envelope__container {
+  position:relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.todo-envelope__current-budget {
+  width: 17px;
+  position: relative;
+  //position: absolute;
+}
+
+  .todo-envelope__current-budget img {
+    position: absolute;
+  }
+
+
 .todo-envelope {
   position: relative;
   background: url('/assets/images/envelope/envelope.png');
-  margin: 0.5em;
   padding: 0.3em;
   height: @todo-envelope-height;
   width: @todo-envelope-width;
   text-align: center;
 }
 
+/*
  .todo-envelope:before {
   content: url('http://www.sibaco.com/Explainer%20-%20old%20ck/core/misc/icons/000000/chevron-right.svg');
   position: absolute;
   left: -10px;
   top: 0px;
 }
+*/
 
 .todo-envelope__name {
   position: absolute;

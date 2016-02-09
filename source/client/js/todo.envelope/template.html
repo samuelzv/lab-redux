@@ -1,9 +1,15 @@
 <div>
-    <div class="todo-envelope">
-        {{vm.envelope.initial | currency }}
-        <div class="todo-envelope__name" title={{vm.envelope.name}}>{{vm.envelope.name}}</div>
+    <div class="todo-envelope__container">
+        <div class="todo-envelope__current-budget">
+            <img src="http://www.sibaco.com/Explainer%20-%20old%20ck/core/misc/icons/000000/chevron-right.svg" alt="">
+        </div>
+         <div class="todo-envelope">
+            {{vm.budget.initial | currency }}
+            <div class="todo-envelope__name" title={{vm.budget.name}}>{{vm.budget.name}}</div>
+        </div>
     </div>
+
     <div class="todo-envelope__footer">
-        <div>Current: {{vm.envelope.current | currency}}</div>
+        <div>Current: {{vm.budget.current | currency}}</div>
     </div>
 </div>
