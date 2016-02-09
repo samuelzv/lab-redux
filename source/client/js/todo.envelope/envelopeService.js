@@ -7,8 +7,8 @@ var envelopeService = function() {
 
   const envelopeSize = {
     unit: 'pixels',
-    width: 70,
-    height: 130
+    width: 89,
+    height: 160
   };
 
   var getTopByCurrentBudget = function(originalBudget, currentBudget) {
