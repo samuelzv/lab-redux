@@ -20,13 +20,15 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
+    "mocha": "^2.4.5",
     "run-sequence": "^1.1.5",
+    "supertest": "^1.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha -u bdd -R spec",
     "start": "nodemon source/server/app.js -d 2"
   },
   "author": "",
@@ -36,7 +38,14 @@
     "angular-validation": "^1.4.1",
     "bluebird": "^3.1.1",
     "bootstrap": "^3.3.6",
+    "co": "^4.6.0",
+    "co-body": "^4.0.0",
+    "co-monk": "^1.0.0",
     "koa": "^1.1.2",
-    "koa-static": "^2.0.0"
+    "koa-body": "^1.4.0",
+    "koa-route": "^2.4.2",
+    "koa-static": "^2.0.0",
+    "mongoose": "^3.8.23",
+    "monk": "^1.0.1"
   }
 }

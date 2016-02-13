@@ -1,8 +1,8 @@
 var envelopeService = function() {
   const indicatorSize = {
     unit: 'pixels',
-    width: 16,
-    height: 16
+    width: 100,
+    height: 16.23
   };
 
   const envelopeSize = {
@@ -11,14 +11,13 @@ var envelopeService = function() {
     height: 160
   };
 
-  var getTopByCurrentBudget = function(originalBudget, currentBudget) {
+  var getTopByCurrentBudget = function(budget) {
+    var initialTop = 0;
 
-    if(!currentBudget) {
-      return 0;
-    }
-    var totalHeight = (envelopeSize.height - indicatorSize.height);
+    var totalHeight = (envelopeSize.height - indicatorSize.height - initialTop);
 
-    return totalHeight - ( (currentBudget / originalBudget) * (totalHeight) );
+
+    return initialTop + (totalHeight - ( (budget.current / budget.initial) * (totalHeight) ));
   };
 
   return {

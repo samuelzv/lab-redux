@@ -11,7 +11,7 @@ function TodoDashboardController() {
             name: 'Gas',
             lastUpdate: '',
             initial: 1600,
-            current: 1200
+            current: 800
         },
         {
             name: 'Luz',

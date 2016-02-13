@@ -14,14 +14,25 @@
   //position: absolute;
 }
 
+/*
   .todo-envelope__current-budget img {
     position: absolute;
+    z-index: 0;
+  }
+*/
+
+  .todo-envelope__current-budget span {
+    position: absolute;
+    left: -20px;
+    z-index: 101;
   }
 
 
 .todo-envelope {
   position: relative;
-  background: url('/assets/images/envelope/envelope_big.png');
+  background: url('/assets/images/dollar/dollar.png'), url('/assets/images/envelope/envelope_big.png');
+  background-repeat: no-repeat, no-repeat ;
+  background-position: center, left top;
   padding: 0.3em;
   height: @todo-envelope-height;
   width: @todo-envelope-width;
