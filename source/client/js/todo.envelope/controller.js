@@ -1,8 +1,11 @@
 'use strict';
 
-TodoEnvelopeController.$inject = [];
-function TodoEnvelopeController() {
+TodoEnvelopeController.$inject = ['todoEnvelopeColorsService'];
+
+function TodoEnvelopeController(todoEnvelopColorsService) {
   var vm = this;
+
+  vm.color = todoEnvelopColorsService.getColorByIndex(vm.index);
 }
 
 module.exports = TodoEnvelopeController;

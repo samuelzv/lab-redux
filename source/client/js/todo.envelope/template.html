@@ -1,21 +1,16 @@
-<div>
-    <div class="todo-envelope__container">
-        <div class="todo-envelope__current-budget">
-            <!--<img src="http://www.sibaco.com/Explainer%20-%20old%20ck/core/misc/icons/000000/chevron-right.svg" alt="">-->
-            <span class="label"
-                  ng-class="{
-                        'label-success': vm.budget.current >= (vm.budget.initial/2) ,
-                        'label-warning':vm.budget.current < (vm.budget.initial/2) ,
-                        'label-danger':vm.budget.current==0}">
-                {{vm.budget.current | currency}}
-            </span>
+<div class="todo-envelope__container">
+    <div class="todo-envelope__budget" ng-style={"background-color":vm.color}>
+        <div class="todo-envelope__budget__name">
+            {{vm.budget.name}}
         </div>
-         <div class="todo-envelope">
-            {{vm.budget.initial | currency }}
-            <div class="todo-envelope__name" title={{vm.budget.name}}>{{vm.budget.name}}</div>
+        <div>
+            <div class="todo-envelope__budget__icon">
+            </div>
+            <div class="todo-envelope__budget__balance"> balance </div>
         </div>
-    </div>
-
-    <div class="todo-envelope__footer">
+        <div class="todo-envelope__budget__current">{{vm.budget.current | currency}}</div>
+        <div class="todo-envelope__budget__progress">
+            <div class="todo-envelope__budget__spend"></div>
+        </div>
     </div>
 </div>

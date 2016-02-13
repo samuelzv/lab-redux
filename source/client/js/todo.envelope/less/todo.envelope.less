@@ -6,66 +6,50 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  flex-basis: 32%;
 }
 
-.todo-envelope__current-budget {
-  width: 17px;
-  position: relative;
-  //position: absolute;
+.todo-envelope__budget {
+  background: yellow;
+  height: 110px;
+  width:100%;
+  margin-bottom: 0.3em;
 }
 
-/*
-  .todo-envelope__current-budget img {
-    position: absolute;
-    z-index: 0;
-  }
-*/
-
-  .todo-envelope__current-budget span {
-    position: absolute;
-    left: -20px;
-    z-index: 101;
+  .todo-envelope__budget__name {
+    color:white;
+    font-size: 1em;
   }
 
-
-.todo-envelope {
-  position: relative;
-  background: url('/assets/images/dollar/dollar.png'), url('/assets/images/envelope/envelope_big.png');
-  background-repeat: no-repeat, no-repeat ;
-  background-position: center, left top;
-  padding: 0.3em;
-  height: @todo-envelope-height;
-  width: @todo-envelope-width;
-  text-align: center;
-}
-
-/*
- .todo-envelope:before {
-  content: url('http://www.sibaco.com/Explainer%20-%20old%20ck/core/misc/icons/000000/chevron-right.svg');
-  position: absolute;
-  left: -10px;
-  top: 0px;
-}
-*/
-
-.todo-envelope__name {
-  position: absolute;
-  top: @todo-envelope-height - 20px; // TODO maybe bottom
-  width: @todo-envelope-width;
-  text-align: left;
-
-  font-weight: bold;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-  .todo-envelope__footer {
-    margin: 0.5em;
-    padding: 0.3em;
-    width: @todo-envelope-width;
+  .todo-envelope__budget__icon {
+    width: 40px;
+    height: 40px;
+    background: url('/assets/images/envelope/envelope-money-icon.png');
+    background-repeat: no-repeat;
+    display: inline-block;
   }
-  .todo-envelope__footer__title {
+
+  .todo-envelope__budget__balance {
+    width: 50%;
+    vertical-align: top;
+    display: inline;
   }
+
+  .todo-envelope__budget__current {
+    color: white;
+    text-align: center;
+  }
+
+  .todo-envelope__budget__progress {
+    border: 2px solid white;
+    margin: 5px 5px;
+  }
+
+  .todo-envelope__budget__spend {
+    width: 80%;
+    height: 10px;
+    background-color: white;
+  }
+
 
 

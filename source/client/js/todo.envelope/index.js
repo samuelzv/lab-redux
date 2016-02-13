@@ -2,4 +2,4 @@
 
 module.exports = angular.module('todo.envelope',[])
   .directive('todoEnvelope', require('./directive'))
-  .factory('envelopeService', require('./envelopeService'));
+  .factory('todoEnvelopeColorsService', require('./todoEnvelopeColorsService'));
